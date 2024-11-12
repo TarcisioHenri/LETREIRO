@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Letreiros Animados Diferentes</title>
+  <style>
+    /* Definindo a largura e altura da tela */
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;  /* Largura da tela */
+      height: 100vh; /* Altura da tela */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #0a164e;
+      overflow: hidden;
+      position: relative;
+      perspective: 1000px; /* Cria a profundidade para o efeito 3D */
+    }
+
+    /* Letreiro centralizado no meio da tela */
+    .container {
+      position: absolute;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.7);
+      border-radius: 15px;
+      border: 6px solid #ffffff;
+      text-align: center;
+      width: 80%;  /* Ajuste a largura conforme necessário */
+      max-width: 600px;
+      overflow: hidden; /* Impede o texto de ultrapassar os limites do contêiner */
+      z-index: 2;  /* Coloca o letreiro principal acima do fundo */
+      transform-style: preserve-3d;  /* Faz o elemento manter as transformações 3D */
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5), 0 10px 25px rgba(0, 0, 0, 0.3);  /* Sombras para dar profundidade */
+      transition: transform 0.3s ease;  /* Transição suave para efeitos 3D */
+    }
+
+    /* Efeito de rotação 3D no container quando interage com o mouse */
+    body:hover .container {
+      transform: rotateY(10deg) rotateX(10deg);
+    }
+
+    /* Animando o letreiro principal (texto) */
+    .letreiro {
+      font-size: 30px;  /* Aumentando o tamanho da fonte */
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      white-space: nowrap;
+      display: inline-block;
+      animation: deslizar-texto 10s linear infinite;
+      padding-left: 100%; /* Garante que o texto inicie fora da tela */
+    }
+
+    /* Animando o texto do letreiro principal da esquerda para a direita */
+    @keyframes deslizar-texto {
+      0% {
+        transform: translateX(-100%);
+      }
+      50% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(100%);
+      }
+    }
+
+    /* Letreiro adicional (que se move de cima para baixo) */
+    .additional-letreiro {
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 24px;
+      color: rgba(255, 255, 255, 0.8);
+      white-space: nowrap;
+      animation: deslizar-topo-para-baixo 10s linear infinite;
+      z-index: 0; /* Fica atrás dos outros letreiros */
+    }
+
+    /* Animação do letreiro adicional (movendo de cima para baixo) */
+    @keyframes deslizar-topo-para-baixo {
+      0% {
+        top: -50px;
+      }
+      100% {
+        top: 100vh; /* Move para a parte inferior da tela */
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Letreiro centralizado no meio da tela -->
+  <div class="container">
+    <div class="letreiro">Olá, meu nome e Tarcísio!</div>
+  </div>
+
+  <!-- Novo letreiro animado (movendo de cima para baixo) -->
+  <div class="additional-letreiro">
+    Olá, meu nome e Tarcísio
+  </div>
+
+</body>
+</html>
